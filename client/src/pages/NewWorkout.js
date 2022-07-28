@@ -24,7 +24,7 @@ function NewWorkout({ user }) {
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    fetch("/recipes", {
+    fetch("/workouts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -78,7 +78,7 @@ function NewWorkout({ user }) {
           </FormField>
           <FormField>
             <Button color="primary" type="submit">
-              {isLoading ? "Loading..." : "Submit Recipe"}
+              {isLoading ? "Loading..." : "Submit Workout"}
             </Button>
           </FormField>
           <FormField>
