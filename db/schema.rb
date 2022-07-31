@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_28_012921) do
+ActiveRecord::Schema.define(version: 2022_07_31_185226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "exercises", force: :cascade do |t|
+    t.string "name"
+    t.string "image_url"
+    t.string "description"
+    t.string "target_area"
+    t.string "equipment"
+    t.integer "routine_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "routines", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
@@ -29,6 +46,7 @@ ActiveRecord::Schema.define(version: 2022_07_28_012921) do
     t.text "instructions"
     t.integer "minutes_to_complete"
     t.integer "user_id"
+    t.integer "routine_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
