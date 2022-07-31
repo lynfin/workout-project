@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
@@ -20,6 +20,14 @@ function NewWorkout({ user }) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
+  // const [exercises, setExercises] = useState([])
+
+  // useEffect(() => {
+  //   fetch("/exercises")
+  //   .then(r => r.json())
+  //   .then(exerciseArray => setExercises(exerciseArray));
+  // },[])
+
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -33,6 +41,7 @@ function NewWorkout({ user }) {
         title,
         instructions,
         minutes_to_complete: minutesToComplete,
+        routine_id: 6,
       }),
     }).then((r) => {
       setIsLoading(false);
@@ -97,6 +106,11 @@ function NewWorkout({ user }) {
         </p>
         <ReactMarkdown>{instructions}</ReactMarkdown>
       </WrapperChild>
+      {/* <div>
+        {exercises.map(exercise => (
+          <div>{exercise.name}</div>
+        ))}
+      </div> */}
     </Wrapper>
   );
 }

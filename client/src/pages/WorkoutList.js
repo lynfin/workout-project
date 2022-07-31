@@ -7,6 +7,7 @@ import { Box, Button } from "../styles";
 function WorkoutList() {
   const [workouts, setWorkouts] = useState([]);
 
+
   useEffect(() => {
     fetch("/workouts")
       .then((r) => r.json())
