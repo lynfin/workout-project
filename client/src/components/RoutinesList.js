@@ -41,13 +41,13 @@ function RoutinesList() {
       <ExerciseContainer>
         <ExerciseList>
           {exercises.map((exercise) => (
-            <ExerciseCard
+            <ExerciseListEntry
               id={exercise.id}
               key={exercise.id}
               onClick={handleExerciseClick}
             >
               {exercise.name}
-            </ExerciseCard>
+            </ExerciseListEntry>
           ))}
         </ExerciseList>
       </ExerciseContainer>
@@ -85,7 +85,7 @@ const ExerciseList = styled.div`
   flex-flow: column wrap;
 `;
 
-const ExerciseCard = styled.div`
+const ExerciseListEntry = styled.div`
   margin: 20px;
   background: #fff;
   height: 50px;
