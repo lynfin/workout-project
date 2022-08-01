@@ -9,32 +9,35 @@ function NewWorkout({ user }) {
   const current = new Date();
   const today = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`
   const [date, setDate] = useState(today);
-  const [comments, setComments] = useState(`Here's how you do it.
-  
-## Equipment
+  const [comments, setComments] = useState(`  ## Comments
 
-- 25lb free weights
 
-## Comments
 
-**Lift** repeatedly
+  ## Exercises
+
   `);
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
-  // const [exercises, setExercises] = useState([])
+  const [routines, setRoutines] = useState([])
+  const [selectedRoutine, setSelectedRoutine] = useState("Please Select...")
+  const [exercises, setExercises] = useState([])
+  const [checked, setChecked] = useState([])
 
-  // useEffect(() => {
-  //   fetch("/exercises")
-  //   .then(r => r.json())
-  //   .then(exerciseArray => setExercises(exerciseArray));
-  // },[])
+  useEffect(() => {
+    fetch("/routines")
+    .then(r => r.json())
+    .then(routinesArray => setRoutines(routinesArray))
+  },[])
 
+  useEffect(() => {
+    fetch("/exercises")
+    .then(r => r.json())
+    .then(exerciseArray => setExercises(exerciseArray));
+  },[])
 
-  function handleSubmit(e) {
-    
-    e.preventDefault();
-    
+  function handleSubmit(e) { 
+    e.preventDefault(); 
     setIsLoading(true);
     fetch("/workouts", {
       method: "POST",
@@ -44,7 +47,7 @@ function NewWorkout({ user }) {
       body: JSON.stringify({
         date: date,
         comments: comments,
-        routine_id: 3,
+        routine_id: selectedRoutine,
       }),
     }).then((r) => {
       setIsLoading(false);
@@ -55,6 +58,10 @@ function NewWorkout({ user }) {
       }
     });
   }
+
+  
+  const exercisesToDisplay = exercises.filter(exercise => parseInt(exercise.routine_id) === parseInt(selectedRoutine))
+  // const [filteredExercises, setFilteredExercises] = useState("")
 
   return (
     <Wrapper>
@@ -69,6 +76,18 @@ function NewWorkout({ user }) {
               value={date}
               onChange={(e) => setDate(e.target.value)}
             />
+          </FormField>
+          <FormField>
+            <Label>Routine</Label>
+            <select  onChange={(e) => setSelectedRoutine(e.target.value)}>
+              <option>Please Select...</option>
+              {routines.map(routine => (
+                  <option 
+                  key={routine.id}
+                  value={routine.id}
+                  >{routine.name}</option>
+              ))}
+            </select>
           </FormField>
           <FormField>
             <Label htmlFor="comments">Comments</Label>
@@ -92,12 +111,18 @@ function NewWorkout({ user }) {
         </form>
       </WrapperChild>
       <WrapperChild>
-        <h1>{date}</h1>
+        {/* <h1>{date}</h1>
         <p>
           &nbsp;·&nbsp;
           <cite>By {user.username}</cite>
         </p>
-        <ReactMarkdown>{comments}</ReactMarkdown>
+        <ReactMarkdown>{comments}</ReactMarkdown> */}
+        {exercisesToDisplay.map(exercise => (
+          <label key={exercise.id}>
+            <input type="checkbox" value={exercise.name} onChange={(e) => setComments(`${comments} -${e.target.value}    `)}></input>
+            <span>{exercise.name}&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          </label>
+        ))}
       </WrapperChild>
     </Wrapper>
   );
