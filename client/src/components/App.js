@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar";
-import Login from "../pages/Login";
-import WorkoutList from "../pages/WorkoutList";
-import NewWorkout from "../pages/NewWorkout";
+import Login from "./Login";
+import WorkoutList from "./WorkoutList";
+import NewWorkout from "./NewWorkout";
 
 function App() {
   const [user, setUser] = useState(null);

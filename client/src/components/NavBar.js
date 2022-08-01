@@ -15,7 +15,7 @@ function NavBar({ user, setUser }) {
   return (
     <Wrapper>
       <Logo>
-        <Link to="/">Workout Tracker!</Link>
+        <Link to="/">Workout Tracker</Link>
       </Logo>
       <Nav>
         <Button as={Link} to="/new">
