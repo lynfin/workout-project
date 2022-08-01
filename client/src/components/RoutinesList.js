@@ -6,7 +6,18 @@ import { Box, ButtonFixedWidth } from "../styles";
 
 function RoutinesList() {
   const [routines, setRoutines] = useState([]);
-  function handleRoutineClick() {}
+  const [exercises, setExercises] = useState([]);
+
+  function handleRoutineClick(e) {
+    console.log(`${e.target} clicked`);
+    console.log(e.target);
+    fetch(`/routines/${e.target.id}`)
+      .then((r) => r.json())
+      .then((routine) => {
+        console.log(routine.exercises);
+        setExercises(routine.exercises);
+      });
+  }
   useEffect(() => {
     fetch("/routines")
       .then((r) => r.json())
@@ -18,14 +29,16 @@ function RoutinesList() {
       <RoutineBar>
         {routines.length > 0 ? (
           routines.map((routine) => (
-            <ButtonFixedWidth key={routine.id} onClick={handleRoutineClick}>
+            <ButtonFixedWidth
+              id={routine.id}
+              key={routine.id}
+              onClick={handleRoutineClick}
+            >
               {routine.name.replace(" Day", "")}
             </ButtonFixedWidth>
           ))
         ) : (
-          <>
-            <h2>No Routines Found</h2>
-          </>
+          <h2></h2>
         )}
       </RoutineBar>
     </Wrapper>
