@@ -26,7 +26,7 @@ function App() {
       <NavBar user={user} setUser={setUser} />
       <main>
         <Switch>
-        <Route exact path="/user">
+          <Route exact path="/">
             <UserPage user={user} setUser={setUser} />
           </Route>
           <Route exact path="/new">
@@ -34,8 +34,8 @@ function App() {
           </Route>
           <Route exact path="/routines">
             <RoutinesList />
-          </Route>          
-          <Route exact path="/">
+          </Route>
+          <Route exact path="/workouts">
             <WorkoutList />
           </Route>
         </Switch>
