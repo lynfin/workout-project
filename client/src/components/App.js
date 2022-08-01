@@ -4,6 +4,7 @@ import NavBar from "./NavBar";
 import Login from "./Login";
 import WorkoutList from "./WorkoutList";
 import NewWorkout from "./NewWorkout";
+import UserPage from "./UserPage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -24,9 +25,17 @@ function App() {
       <NavBar user={user} setUser={setUser} />
       <main>
         <Switch>
+        <Route path="/">
+            <UserPage user={user} setUser={setUser} 
+            />
+          </Route>
           <Route path="/new">
             <NewWorkout user={user} />
           </Route>
+          {/* <Route path="/user">
+            <UserPage user={user} setUser={setUser} 
+            />
+          </Route> */}
           <Route path="/">
             <WorkoutList />
           </Route>

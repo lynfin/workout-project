@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const COLORS = {
   primary: {
-    "--main": "indigo",
+    "--main": "red",
     "--accent": "white",
   },
   secondary: {
@@ -26,8 +26,9 @@ const ButtonBase = styled.button`
   cursor: pointer;
   font-size: 1rem;
   border: 1px solid transparent;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 1rem;
   border-radius: 6px;
-  padding: 8px 16px;
   text-decoration: none;
 `;
 
