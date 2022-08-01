@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Login from "./Login";
 import WorkoutList from "./WorkoutList";
+import RoutinesList from "./RoutinesList";
 import NewWorkout from "./NewWorkout";
 import UserPage from "./UserPage";
 
@@ -31,6 +32,9 @@ function App() {
           <Route exact path="/new">
             <NewWorkout user={user} />
           </Route>
+          <Route exact path="/routines">
+            <RoutinesList />
+          </Route>          
           <Route exact path="/">
             <WorkoutList />
           </Route>
