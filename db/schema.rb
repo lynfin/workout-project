@@ -42,9 +42,8 @@ ActiveRecord::Schema.define(version: 2022_07_31_185226) do
   end
 
   create_table "workouts", force: :cascade do |t|
-    t.string "title"
-    t.text "instructions"
-    t.integer "minutes_to_complete"
+    t.date "date"
+    t.text "comments"
     t.integer "user_id"
     t.integer "routine_id"
     t.datetime "created_at", precision: 6, null: false

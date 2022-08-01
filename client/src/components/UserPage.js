@@ -1,5 +1,8 @@
 import React from 'react'
 import { Button } from '../styles'
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+
 
 
 const UserPage = ( {user} ) => {
@@ -28,10 +31,11 @@ return (
     <h4 style={{textAlign: 'center'}}>{user.bio}</h4>
     <Button onClick={handleBrowseClick} >Browse Exercises</Button>
     <Button onClick={handleWorkoutClick}>My Workouts</Button>
-    <Button onClick={handleCreateClick}>Create Workout</Button>
+    <Button as={Link} to='/new'>Create Workout</Button>
     </>
     
     )
 }
 
 export default UserPage
+
