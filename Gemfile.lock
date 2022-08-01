@@ -74,7 +74,6 @@ GEM
       activesupport
     concurrent-ruby (1.1.9)
     crass (1.0.6)
-    date_time_precision (0.8.1)
     diff-lcs (1.4.4)
     erubi (1.10.0)
     ffi (1.15.1)
@@ -183,7 +182,6 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   byebug
-  date_time_precision
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
