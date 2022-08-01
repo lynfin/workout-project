@@ -5,15 +5,17 @@ import ReactMarkdown from "react-markdown";
 import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
 
 function NewWorkout({ user }) {
-  const [title, setTitle] = useState("My Awesome Workout");
-  const [minutesToComplete, setMinutesToComplete] = useState("30");
-  const [instructions, setInstructions] = useState(`Here's how you do it.
+
+  const current = new Date();
+  const today = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`
+  const [date, setDate] = useState(today);
+  const [comments, setComments] = useState(`Here's how you do it.
   
 ## Equipment
 
 - 25lb free weights
 
-## Instructions
+## Comments
 
 **Lift** repeatedly
   `);
@@ -30,7 +32,9 @@ function NewWorkout({ user }) {
 
 
   function handleSubmit(e) {
+    
     e.preventDefault();
+    
     setIsLoading(true);
     fetch("/workouts", {
       method: "POST",
@@ -38,10 +42,9 @@ function NewWorkout({ user }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        title,
-        instructions,
-        minutes_to_complete: minutesToComplete,
-        routine_id: 6,
+        date: date,
+        comments: comments,
+        routine_id: 3,
       }),
     }).then((r) => {
       setIsLoading(false);
@@ -59,30 +62,21 @@ function NewWorkout({ user }) {
         <h2>Create Workout</h2>
         <form onSubmit={handleSubmit}>
           <FormField>
-            <Label htmlFor="title">Title</Label>
+            <Label htmlFor="date">Date</Label>
             <Input
-              type="text"
-              id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              type="date"
+              id="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
             />
           </FormField>
           <FormField>
-            <Label htmlFor="minutesToComplete">Minutes to complete</Label>
-            <Input
-              type="number"
-              id="minutesToComplete"
-              value={minutesToComplete}
-              onChange={(e) => setMinutesToComplete(e.target.value)}
-            />
-          </FormField>
-          <FormField>
-            <Label htmlFor="instructions">Instructions</Label>
+            <Label htmlFor="comments">Comments</Label>
             <Textarea
-              id="instructions"
+              id="comments"
               rows="10"
-              value={instructions}
-              onChange={(e) => setInstructions(e.target.value)}
+              value={comments}
+              onChange={(e) => setComments(e.target.value)}
             />
           </FormField>
           <FormField>
@@ -98,19 +92,13 @@ function NewWorkout({ user }) {
         </form>
       </WrapperChild>
       <WrapperChild>
-        <h1>{title}</h1>
+        <h1>{date}</h1>
         <p>
-          <em>Time to Complete: {minutesToComplete} minutes</em>
           &nbsp;·&nbsp;
           <cite>By {user.username}</cite>
         </p>
-        <ReactMarkdown>{instructions}</ReactMarkdown>
+        <ReactMarkdown>{comments}</ReactMarkdown>
       </WrapperChild>
-      {/* <div>
-        {exercises.map(exercise => (
-          <div>{exercise.name}</div>
-        ))}
-      </div> */}
     </Wrapper>
   );
 }
