@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Login from "./Login";
 import WorkoutList from "./WorkoutList";
+import RoutinesList from "./RoutinesList";
 import NewWorkout from "./NewWorkout";
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path="/">
             <WorkoutList />
+          </Route>
+          <Route path="/routines">
+            <RoutinesList />
           </Route>
         </Switch>
       </main>
