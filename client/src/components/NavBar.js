@@ -18,12 +18,15 @@ function NavBar({ user, setUser }) {
         <Link to="/">Workout Tracker</Link>
       </Logo>
       <Nav>
+{/*
         <Button as={Link} to="/routines">
           Routines
         </Button>
-        <Button as={Link} to="/new">
+ */}
+
+        {/* <Button as={Link} to="/new">
           New Workout
-        </Button>
+        </Button> */}
         <Button variant="outline" onClick={handleLogoutClick}>
           Logout
         </Button>

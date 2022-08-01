@@ -5,6 +5,7 @@ import Login from "./Login";
 import WorkoutList from "./WorkoutList";
 import RoutinesList from "./RoutinesList";
 import NewWorkout from "./NewWorkout";
+import UserPage from "./UserPage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -25,13 +26,16 @@ function App() {
       <NavBar user={user} setUser={setUser} />
       <main>
         <Switch>
-          <Route path="/new">
+        <Route exact path="/user">
+            <UserPage user={user} setUser={setUser} />
+          </Route>
+          <Route exact path="/new">
             <NewWorkout user={user} />
           </Route>
-          <Route path="/routines">
+          <Route exact path="/routines">
             <RoutinesList />
-          </Route>
-          <Route path="/">
+          </Route>          
+          <Route exact path="/">
             <WorkoutList />
           </Route>
         </Switch>
