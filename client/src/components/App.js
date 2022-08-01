@@ -28,11 +28,11 @@ function App() {
           <Route path="/new">
             <NewWorkout user={user} />
           </Route>
-          <Route path="/">
-            <WorkoutList />
-          </Route>
           <Route path="/routines">
             <RoutinesList />
+          </Route>
+          <Route path="/">
+            <WorkoutList />
           </Route>
         </Switch>
       </main>
