@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Box, Button } from "../styles";
+import { Box, Button, Textarea } from "../styles";
 
-function WorkoutList({ id }) {
-  const [workouts, setWorkouts] = useState([]);
+function WorkoutList({user}) {
   
- 
-
+  const [workouts, setWorkouts] = useState([]);
+  const [newComments, setNewComments] = useState("")
+  
   function deleteWorkout(id) {
     fetch(`/workouts/${id}`, {
       method: "DELETE",
@@ -19,52 +18,45 @@ function WorkoutList({ id }) {
     }).catch((err) => console.log(err));
   } 
 
-  function updateWorkout(id, date, comments, routine_id) {
+  function updateWorkout(id, comments ) {
     fetch(`/workouts/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ date, comments, routine_id }),
+      body: JSON.stringify({ comments: newComments }),
     }).then((r) => {
       if (r.ok) {
-        setWorkouts(workouts.map((workout) => (workout.id === id ? { ...workout, date, comments, routine_id } : workout)));
+        setWorkouts(workouts.map((workout) => (workout.id === id ? { ...workout, comments } : workout)));
       } else {
         r.json().then((err) => console.log(err));
       }
     });
   }
 
-
   useEffect(() => {
     fetch("/workouts")
       .then((r) => r.json())
-      .then(setWorkouts);
+      .then(workoutsArray => setWorkouts(workoutsArray.filter(workout => workout.user.id === user.id)))
   }, []);
 
-
-  
 return (
     <Wrapper>
       {workouts.length > 0 ? (
         workouts.map((workout) => (
           <Workout key={workout.id}>
             <Box>
-              <h3>{workout.date}</h3>
-              {/* <h2>{workout.name}</h2> */}
-              <p>
-              <em style={{textDecoration: 'underline'}}>How Was The Workout?
-                <br/>
-              {workout.comments}  {workouts.exercises}</em>
-               <br/>
-              {/* &nbsp;·&nbsp; */}
-              <br/>
-              <br/>
+              <h3>{workout.date}</h3> 
               <cite>By {workout.user.username}</cite>
-            </p>
-            <Button onClick={()=> deleteWorkout(workout.id)}>🗑️ Delete</Button>
-            <Button onClick={()=> updateWorkout(workout.id)}>Update </Button>
-            <ReactMarkdown>{workout.exercises}</ReactMarkdown>
+              <p>
+                <em style={{textDecoration: 'underline'}}>How Was The Workout? <br/>
+                  <form onSubmit={()=> updateWorkout(workout.id)}>
+                    <Textarea defaultValue={workout.comments} onChange={(e) => setNewComments(e.target.value)} style={{height: '200px'}}/>
+                    <Button >Update </Button> 
+                    <Button onClick={()=> deleteWorkout(workout.id)} >🗑️ Delete</Button>
+                  </form>
+                </em>
+              </p>
             </Box>
           </Workout>
         ))
