@@ -1,45 +1,50 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
+
 import ReactMarkdown from "react-markdown";
-import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
+import { Box, Button, Error, FormField, Input, Label, Select, Textarea  } from "../styles";
+
+
 
 function NewWorkout({ user }) {
-
   const current = new Date();
-  const today = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`
+  const today = `${current.getDate()}/${
+    current.getMonth() + 1
+  }/${current.getFullYear()}`;
   const [date, setDate] = useState(today);
   const [comments, setComments] = useState(`   Comments: 
 
   
   
   
-  Exercises: `);
-  
-
-  
+  ## Exercises
+  `);
+ 
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
+
   const [routines, setRoutines] = useState([])
   const [selectedRoutine, setSelectedRoutine] = useState("Please Select...")
   const [exercises, setExercises] = useState([])
-  const [checked, setChecked] = useState([])
+  const [selectedExercises, setSelectedExercises] = useState("")
+  const exercisesToDisplay = exercises.filter(exercise => parseInt(exercise.routine_id) === parseInt(selectedRoutine))
 
   useEffect(() => {
     fetch("/routines")
-    .then(r => r.json())
-    .then(routinesArray => setRoutines(routinesArray))
-  },[])
+      .then((r) => r.json())
+      .then((routinesArray) => setRoutines(routinesArray));
+  }, []);
 
   useEffect(() => {
     fetch("/exercises")
-    .then(r => r.json())
-    .then(exerciseArray => setExercises(exerciseArray));
-  },[])
+      .then((r) => r.json())
+      .then((exerciseArray) => setExercises(exerciseArray));
+  }, []);
 
-  function handleSubmit(e) { 
-    e.preventDefault(); 
+  function handleSubmit(e) {
+    e.preventDefault();
     setIsLoading(true);
     fetch("/workouts", {
       method: "POST",
@@ -54,16 +59,28 @@ function NewWorkout({ user }) {
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
-        history.push("/");
+        history.push("/workouts");
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
     });
   }
 
+
   
-  const exercisesToDisplay = exercises.filter(exercise => parseInt(exercise.routine_id) === parseInt(selectedRoutine))
-  //const [filteredExercises, setFilteredExercises] = useState("")
+  
+
+
+  function handleChange(exerciseName) {
+    if(comments.includes(exerciseName)) {
+      setComments(comments.replace("\n   " + exerciseName, ''))
+    } else
+    setComments(`${comments} \n   ${exerciseName}`) 
+
+    // if(selectedExercises.includes(exerciseName)) {
+    //   setSelectedExercises(selectedExercises.replace("\n" + `${exerciseName}`, ''))
+    // } else setSelectedExercises(`${selectedExercises} \n${exerciseName}`)
+  }
 
   return (
     <Wrapper>
@@ -81,15 +98,16 @@ function NewWorkout({ user }) {
           </FormField>
           <FormField>
             <Label>Routine</Label>
-            <select  onChange={(e) => setSelectedRoutine(e.target.value)}>
+
+            <Select onChange={(e) => setSelectedRoutine(e.target.value)}>
+
               <option>Please Select...</option>
-              {routines.map(routine => (
-                  <option 
-                  key={routine.id}
-                  value={routine.id}
-                  >{routine.name}</option>
+              {routines.map((routine) => (
+                <option key={routine.id} value={routine.id}>
+                  {routine.name}
+                </option>
               ))}
-            </select>
+            </Select>
           </FormField>
           <FormField>
             <Label htmlFor="comments">Comments</Label>
@@ -101,6 +119,10 @@ function NewWorkout({ user }) {
             />
             
           </FormField>
+          {/* <FormField>
+            <Label>Selected Exercises</Label>
+            <Box>{selectedExercises}</Box>*
+          </FormField> */}
           <FormField>
             <Button color="primary" type="submit">
               {isLoading ? "Loading..." : "Submit Workout"}
@@ -113,18 +135,13 @@ function NewWorkout({ user }) {
           </FormField>
         </form>
       </WrapperChild>
-      <WrapperChild>
-        {/* <h1>{date}</h1>
-        <p>
-          &nbsp;·&nbsp;
-          <cite>By {user.username}</cite>
-        </p>
-        <ReactMarkdown>{comments}</ReactMarkdown> */}
+
+      <WrapperChild style={{margin: '70px'}}>
         {exercisesToDisplay.map(exercise => (
-          <label key={exercise.id}>
-            <input type="checkbox" value={exercise.name} onChange={(e) => setComments(`${comments} -${e.target.value}    `)}></input>
+          <Label key={exercise.id} style={{marginTop: '30px'}}>
+            <input type="checkbox" value={exercise.name} onChange={(e) => handleChange(e.target.value)}></input>
             <span>{exercise.name}&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          </label>
+          </Label>
         ))}
       </WrapperChild>
     </Wrapper>

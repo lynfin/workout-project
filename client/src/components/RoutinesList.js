@@ -1,12 +1,20 @@
 import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Box, ButtonFixedWidth } from "../styles";
+import { ButtonFixedWidth } from "../styles";
+import ExerciseCard from "./ExerciseCard";
 
 function RoutinesList() {
   const [routines, setRoutines] = useState([]);
   const [exercises, setExercises] = useState([]);
+  const [selectedExercise, setSelectedExercise] = useState({});
+
+  function retrieveExerciseGroup(id) {
+    fetch(`/routines/${id}`)
+      .then((r) => r.json())
+      .then((routine) => {
+        setExercises(routine.exercises);
+      });
+  }
 
   function handleRoutineClick(e) {
     fetch(`/routines/${e.target.id}`)
@@ -15,15 +23,26 @@ function RoutinesList() {
         setExercises(routine.exercises);
       });
   }
+
   function handleExerciseClick(e) {
-    console.log(`${e.target} clicked`);
-    console.log(e.target);
+    const exercise = exercises.find(
+      (exercise) => exercise.id === Number(e.target.id)
+    );
+    setSelectedExercise(exercise);
   }
+
   useEffect(() => {
     fetch("/routines")
       .then((r) => r.json())
-      .then(setRoutines);
+      .then((routines) => {
+        setRoutines(routines);
+        retrieveExerciseGroup(routines[0].id);
+      });
   }, []);
+
+  useEffect(() => {
+    if (exercises.length > 0) setSelectedExercise(exercises[0]);
+  }, [exercises]);
 
   return (
     <Wrapper>
@@ -38,19 +57,25 @@ function RoutinesList() {
           </ButtonFixedWidth>
         ))}
       </RoutineBar>
-      <ExerciseContainer>
-        <ExerciseList>
-          {exercises.map((exercise) => (
-            <ExerciseListEntry
-              id={exercise.id}
-              key={exercise.id}
-              onClick={handleExerciseClick}
-            >
-              {exercise.name}
-            </ExerciseListEntry>
-          ))}
-        </ExerciseList>
-      </ExerciseContainer>
+      <SplitScreen>
+        <ExerciseSelectionContainer>
+          <ExerciseList>
+            {exercises.map((exercise, index) => (
+              <ExerciseListEntry
+                id={exercise.id}
+                index={index}
+                key={exercise.id}
+                onClick={handleExerciseClick}
+              >
+                {exercise.name}
+              </ExerciseListEntry>
+            ))}
+          </ExerciseList>
+        </ExerciseSelectionContainer>
+        <ExerciseDisplayContainer>
+          <ExerciseCard exercise={selectedExercise} />
+        </ExerciseDisplayContainer>
+      </SplitScreen>
     </Wrapper>
   );
 }
@@ -60,8 +85,19 @@ const Wrapper = styled.section`
   margin: 40px auto;
 `;
 
-const Routine = styled.article`
-  margin-bottom: 24px;
+const SplitScreen = styled.section`
+  display: flex;
+  flex-flow: row;
+  height: 1600px;
+`;
+
+const ExerciseDisplayContainer = styled.div`
+  background: #36393e;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  width: 75%;
+  height: 100%;
 `;
 
 const RoutineBar = styled.nav`
@@ -71,7 +107,7 @@ const RoutineBar = styled.nav`
 
 // Exercise container layout
 // FlexBox example here: https://javascript.plainenglish.io/how-to-react-vertical-scrolling-list-grid-with-flexbox-714a61a07c9
-const ExerciseContainer = styled.div`
+const ExerciseSelectionContainer = styled.div`
   background: #36393e;
   display: flex;
   justify-content: center;
@@ -81,7 +117,7 @@ const ExerciseContainer = styled.div`
 `;
 const ExerciseList = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-flow: column wrap;
 `;
 
