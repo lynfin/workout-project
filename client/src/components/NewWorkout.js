@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
-import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
+import { Box, Button, Error, FormField, Input, Label, Select, Textarea  } from "../styles";
 
 function NewWorkout({ user }) {
 
@@ -14,7 +14,6 @@ function NewWorkout({ user }) {
 
 
   ## Exercises
-
   `);
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -22,7 +21,8 @@ function NewWorkout({ user }) {
   const [routines, setRoutines] = useState([])
   const [selectedRoutine, setSelectedRoutine] = useState("Please Select...")
   const [exercises, setExercises] = useState([])
-  const [checked, setChecked] = useState([])
+  const [selectedExercises, setSelectedExercises] = useState("")
+  const exercisesToDisplay = exercises.filter(exercise => parseInt(exercise.routine_id) === parseInt(selectedRoutine))
 
   useEffect(() => {
     fetch("/routines")
@@ -52,16 +52,26 @@ function NewWorkout({ user }) {
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
-        history.push("/");
+        history.push("/workouts");
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
     });
   }
 
+  function handleChange(exerciseName) {
+    if(comments.includes(exerciseName)) {
+      setComments(comments.replace("\n   " + exerciseName, ''))
+    } else
+    setComments(`${comments} \n   ${exerciseName}`) 
+
+    // if(selectedExercises.includes(exerciseName)) {
+    //   setSelectedExercises(selectedExercises.replace("\n" + `${exerciseName}`, ''))
+    // } else setSelectedExercises(`${selectedExercises} \n${exerciseName}`)
+  }
+
   
-  const exercisesToDisplay = exercises.filter(exercise => parseInt(exercise.routine_id) === parseInt(selectedRoutine))
-  // const [filteredExercises, setFilteredExercises] = useState("")
+  
 
   return (
     <Wrapper>
@@ -79,7 +89,7 @@ function NewWorkout({ user }) {
           </FormField>
           <FormField>
             <Label>Routine</Label>
-            <select  onChange={(e) => setSelectedRoutine(e.target.value)}>
+            <Select onChange={(e) => setSelectedRoutine(e.target.value)}>
               <option>Please Select...</option>
               {routines.map(routine => (
                   <option 
@@ -87,7 +97,7 @@ function NewWorkout({ user }) {
                   value={routine.id}
                   >{routine.name}</option>
               ))}
-            </select>
+            </Select>
           </FormField>
           <FormField>
             <Label htmlFor="comments">Comments</Label>
@@ -98,6 +108,10 @@ function NewWorkout({ user }) {
               onChange={(e) => setComments(e.target.value)}
             />
           </FormField>
+          {/* <FormField>
+            <Label>Selected Exercises</Label>
+            <Box>{selectedExercises}</Box>*
+          </FormField> */}
           <FormField>
             <Button color="primary" type="submit">
               {isLoading ? "Loading..." : "Submit Workout"}
@@ -110,18 +124,12 @@ function NewWorkout({ user }) {
           </FormField>
         </form>
       </WrapperChild>
-      <WrapperChild>
-        {/* <h1>{date}</h1>
-        <p>
-          &nbsp;·&nbsp;
-          <cite>By {user.username}</cite>
-        </p>
-        <ReactMarkdown>{comments}</ReactMarkdown> */}
+      <WrapperChild style={{margin: '70px'}}>
         {exercisesToDisplay.map(exercise => (
-          <label key={exercise.id}>
-            <input type="checkbox" value={exercise.name} onChange={(e) => setComments(`${comments} -${e.target.value}    `)}></input>
+          <Label key={exercise.id} style={{marginTop: '30px'}}>
+            <input type="checkbox" value={exercise.name} onChange={(e) => handleChange(e.target.value)}></input>
             <span>{exercise.name}&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          </label>
+          </Label>
         ))}
       </WrapperChild>
     </Wrapper>

@@ -6,6 +6,7 @@ import Input from "./Input";
 import Label from "./Label";
 import Textarea from "./Textarea";
 import Error from "./Error";
+import Select from "./Select";
 
 export {
   Box,
@@ -15,5 +16,6 @@ export {
   FormField,
   Input,
   Label,
+  Select,
   Textarea,
 };
