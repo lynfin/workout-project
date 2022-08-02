@@ -3,22 +3,23 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Box, Button, Textarea } from "../styles";
 
-function WorkoutList({user}) {
-  
+function WorkoutList({ user }) {
   const [workouts, setWorkouts] = useState([]);
-  const [newComments, setNewComments] = useState("")
-  
+  const [newComments, setNewComments] = useState("");
+
   function deleteWorkout(id) {
     fetch(`/workouts/${id}`, {
       method: "DELETE",
-    }).then((r) => {
-      if (r.ok) {
-        setWorkouts(workouts.filter((workout) => workout.id !== id));
-      }
-    }).catch((err) => console.log(err));
-  } 
+    })
+      .then((r) => {
+        if (r.ok) {
+          setWorkouts(workouts.filter((workout) => workout.id !== id));
+        }
+      })
+      .catch((err) => console.log(err));
+  }
 
-  function updateWorkout(id, comments ) {
+  function updateWorkout(id, comments) {
     fetch(`/workouts/${id}`, {
       method: "PATCH",
       headers: {
@@ -27,7 +28,11 @@ function WorkoutList({user}) {
       body: JSON.stringify({ comments: newComments }),
     }).then((r) => {
       if (r.ok) {
-        setWorkouts(workouts.map((workout) => (workout.id === id ? { ...workout, comments } : workout)));
+        setWorkouts(
+          workouts.map((workout) =>
+            workout.id === id ? { ...workout, comments } : workout
+          )
+        );
       } else {
         r.json().then((err) => console.log(err));
       }
@@ -37,23 +42,34 @@ function WorkoutList({user}) {
   useEffect(() => {
     fetch("/workouts")
       .then((r) => r.json())
-      .then(workoutsArray => setWorkouts(workoutsArray.filter(workout => workout.user.id === user.id)))
-  }, []);
+      .then((workoutsArray) =>
+        setWorkouts(
+          workoutsArray.filter((workout) => workout.user.id === user.id)
+        )
+      );
+  }, [user.id]); //this is new
 
-return (
+  return (
     <Wrapper>
       {workouts.length > 0 ? (
         workouts.map((workout) => (
           <Workout key={workout.id}>
             <Box>
-              <h3>{workout.date}</h3> 
+              <h3>{workout.date}</h3>
               <cite>By {workout.user.username}</cite>
               <p>
-                <em style={{textDecoration: 'underline'}}>How Was The Workout? <br/>
-                  <form onSubmit={()=> updateWorkout(workout.id)}>
-                    <Textarea defaultValue={workout.comments} onChange={(e) => setNewComments(e.target.value)} style={{height: '200px'}}/>
-                    <Button >Update </Button> 
-                    <Button onClick={()=> deleteWorkout(workout.id)} >🗑️ Delete</Button>
+                <em style={{ textDecoration: "underline" }}>
+                  How Was The Workout? <br />
+                  <form onSubmit={() => updateWorkout(workout.id)}>
+                    <Textarea
+                      defaultValue={workout.comments}
+                      onChange={(e) => setNewComments(e.target.value)}
+                      style={{ height: "200px" }}
+                    />
+                    <Button>Update </Button>
+                    <Button onClick={() => deleteWorkout(workout.id)}>
+                      🗑️ Delete
+                    </Button>
                   </form>
                 </em>
               </p>
@@ -82,5 +98,3 @@ const Workout = styled.article`
 `;
 
 export default WorkoutList;
-
-
