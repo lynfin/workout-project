@@ -2,9 +2,15 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 
-import { Button, Error, FormField, Input, Label, Select, Textarea } from "../styles";
-
-
+import {
+  Button,
+  Error,
+  FormField,
+  Input,
+  Label,
+  Select,
+  Textarea,
+} from "../styles";
 
 function NewWorkout({ user }) {
   const current = new Date();
@@ -18,16 +24,18 @@ function NewWorkout({ user }) {
 -  
 Exercises:
   `);
- 
+
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
-  const [routines, setRoutines] = useState([])
-  const [selectedRoutine, setSelectedRoutine] = useState("Please Select...")
-  const [exercises, setExercises] = useState([])
-  const [selectedExercises, setSelectedExercises] = useState("")
-  const exercisesToDisplay = exercises.filter(exercise => parseInt(exercise.routine_id) === parseInt(selectedRoutine))
+  const [routines, setRoutines] = useState([]);
+  const [selectedRoutine, setSelectedRoutine] = useState("Please Select...");
+  const [exercises, setExercises] = useState([]);
+  const [selectedExercises, setSelectedExercises] = useState("");
+  const exercisesToDisplay = exercises.filter(
+    (exercise) => parseInt(exercise.routine_id) === parseInt(selectedRoutine)
+  );
 
   useEffect(() => {
     fetch("/routines")
@@ -57,19 +65,17 @@ Exercises:
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
-        history.push("/workouts");
+        history.push("/app-workouts");
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
     });
   }
 
-
   function handleChange(exerciseName) {
-    if(comments.includes(exerciseName)) {
-      setComments(comments.replace("\n   " + exerciseName, ''))
-    } else
-    setComments(`${comments} \n   ${exerciseName}`) 
+    if (comments.includes(exerciseName)) {
+      setComments(comments.replace("\n   " + exerciseName, ""));
+    } else setComments(`${comments} \n   ${exerciseName}`);
   }
 
   return (
@@ -119,10 +125,14 @@ Exercises:
         </form>
       </WrapperChild>
 
-      <WrapperChild style={{margin: '70px'}}>
-        {exercisesToDisplay.map(exercise => (
-          <Label key={exercise.id} style={{marginTop: '30px'}}>
-            <input type="checkbox" value={exercise.name} onChange={(e) => handleChange(e.target.value)}></input>
+      <WrapperChild style={{ margin: "70px" }}>
+        {exercisesToDisplay.map((exercise) => (
+          <Label key={exercise.id} style={{ marginTop: "30px" }}>
+            <input
+              type="checkbox"
+              value={exercise.name}
+              onChange={(e) => handleChange(e.target.value)}
+            ></input>
             <span>{exercise.name}&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </Label>
         ))}
@@ -144,5 +154,3 @@ const WrapperChild = styled.div`
 `;
 
 export default NewWorkout;
-
-
