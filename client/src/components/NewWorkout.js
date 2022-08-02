@@ -13,12 +13,14 @@ function NewWorkout({ user }) {
     current.getMonth() + 1
   }/${current.getFullYear()}`;
   const [date, setDate] = useState(today);
-  const [comments, setComments] = useState(`  ## Comments
+  const [comments, setComments] = useState(`   Comments: 
 
-
-
+  
+  
+  
   ## Exercises
   `);
+ 
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
@@ -65,6 +67,10 @@ function NewWorkout({ user }) {
   }
 
 
+  
+  
+
+
   function handleChange(exerciseName) {
     if(comments.includes(exerciseName)) {
       setComments(comments.replace("\n   " + exerciseName, ''))
@@ -75,7 +81,6 @@ function NewWorkout({ user }) {
     //   setSelectedExercises(selectedExercises.replace("\n" + `${exerciseName}`, ''))
     // } else setSelectedExercises(`${selectedExercises} \n${exerciseName}`)
   }
-
 
   return (
     <Wrapper>
@@ -112,6 +117,7 @@ function NewWorkout({ user }) {
               value={comments}
               onChange={(e) => setComments(e.target.value)}
             />
+            
           </FormField>
           {/* <FormField>
             <Label>Selected Exercises</Label>
@@ -155,3 +161,5 @@ const WrapperChild = styled.div`
 `;
 
 export default NewWorkout;
+
+

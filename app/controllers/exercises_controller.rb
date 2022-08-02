@@ -8,4 +8,6 @@ class ExercisesController < ApplicationController
         exercise = Exercise.find(params[:id])
         render json: exercise
     end
+
+    
 end
