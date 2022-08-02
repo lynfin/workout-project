@@ -31,8 +31,8 @@ function NavBar({ user, setUser }) {
         <LeftContainer>
           <NavbarLinkContainer>
             <NavbarLink to="/"> Home</NavbarLink>
-            <NavbarLink to="/routines"> Exercises</NavbarLink>
-            <NavbarLink to="/workouts"> My Workouts</NavbarLink>
+            <NavbarLink to="/app-routines"> Exercises</NavbarLink>
+            <NavbarLink to="/app-workouts"> My Workouts</NavbarLink>
             <NavbarLink to="/new"> Create Workout</NavbarLink>
             <OpenLinksButton
               onClick={() => {
@@ -52,8 +52,11 @@ function NavBar({ user, setUser }) {
       {extendNavbar && (
         <NavbarExtendedContainer>
           <NavbarLinkExtended to="/"> Home</NavbarLinkExtended>
-          <NavbarLinkExtended to="/routines"> Exercises</NavbarLinkExtended>
-          <NavbarLinkExtended to="/workouts"> My Workouts</NavbarLinkExtended>
+          <NavbarLinkExtended to="/app-routines"> Exercises</NavbarLinkExtended>
+          <NavbarLinkExtended to="/app-workouts">
+            {" "}
+            My Workouts
+          </NavbarLinkExtended>
           <NavbarLinkExtended to="/new"> Create Workout</NavbarLinkExtended>
         </NavbarExtendedContainer>
       )}

@@ -26,20 +26,20 @@ function App() {
   return (
     <Router>
       <NavBar user={user} setUser={setUser} />
-        <Switch>
-          <Route exact path="/">
-            <UserPage user={user} setUser={setUser} />
-          </Route>
-          <Route exact path="/new">
-            <NewWorkout user={user} />
-          </Route>
-          <Route exact path="/routines">
-            <RoutinesList />
-          </Route>
-          <Route exact path="/workouts">
-            <WorkoutList user={user}/>
-          </Route>
-        </Switch>
+      <Switch>
+        <Route exact path="/">
+          <UserPage user={user} setUser={setUser} />
+        </Route>
+        <Route exact path="/new">
+          <NewWorkout user={user} />
+        </Route>
+        <Route exact path="/app-routines">
+          <RoutinesList />
+        </Route>
+        <Route exact path="/app-workouts">
+          <WorkoutList user={user} />
+        </Route>
+      </Switch>
     </Router>
   );
 }
