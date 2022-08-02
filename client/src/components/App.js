@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import "./App.css";
+//import { Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Login from "./Login";
 import WorkoutList from "./WorkoutList";
@@ -22,9 +24,8 @@ function App() {
   if (!user) return <Login onLogin={setUser} />;
 
   return (
-    <>
+    <Router>
       <NavBar user={user} setUser={setUser} />
-      <main>
         <Switch>
           <Route exact path="/">
             <UserPage user={user} setUser={setUser} />
@@ -39,8 +40,7 @@ function App() {
             <WorkoutList user={user}/>
           </Route>
         </Switch>
-      </main>
-    </>
+    </Router>
   );
 }
 

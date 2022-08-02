@@ -1,7 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../styles";
+import {
+  NavbarContainer,
+  LeftContainer,
+  RightContainer,
+  NavbarExtendedContainer,
+  NavbarInnerContainer,
+  NavbarLinkContainer,
+  NavbarLink,
+  Logo,
+  OpenLinksButton,
+  NavbarLinkExtended,
+} from "../styles/NavBar.style";
+import LogoImg from "../assets/logo.png";
 
 function NavBar({ user, setUser }) {
   function handleLogoutClick() {
@@ -11,55 +24,41 @@ function NavBar({ user, setUser }) {
       }
     });
   }
-
+  const [extendNavbar, setExtendNavbar] = useState(false);
   return (
-    <Wrapper>
-      <Logo>
-        <Link to="/">Workout Tracker</Link>
-      </Logo>
-      <Nav>
-{/*
-        <Button as={Link} to="/routines">
-          Routines
-        </Button>
- */}
-
-        {/* <Button as={Link} to="/new">
-          New Workout
-        </Button> */}
-        <Button variant="outline" onClick={handleLogoutClick}>
-          Logout
-        </Button>
-      </Nav>
-    </Wrapper>
+    <NavbarContainer extendNavbar={extendNavbar}>
+      <NavbarInnerContainer>
+        <LeftContainer>
+          <NavbarLinkContainer>
+            <NavbarLink to="/"> Home</NavbarLink>
+            <NavbarLink to="/routines"> Exercises</NavbarLink>
+            <NavbarLink to="/workouts"> My Workouts</NavbarLink>
+            <NavbarLink to="/new"> Create Workout</NavbarLink>
+            <OpenLinksButton
+              onClick={() => {
+                setExtendNavbar((curr) => !curr);
+              }}
+            >
+              {extendNavbar ? <>&#10005;</> : <> &#8801;</>}
+            </OpenLinksButton>
+          </NavbarLinkContainer>
+        </LeftContainer>
+        <RightContainer>
+          <Button variant="outline" onClick={handleLogoutClick}>
+            Logout
+          </Button>
+        </RightContainer>
+      </NavbarInnerContainer>
+      {extendNavbar && (
+        <NavbarExtendedContainer>
+          <NavbarLinkExtended to="/"> Home</NavbarLinkExtended>
+          <NavbarLinkExtended to="/routines"> Exercises</NavbarLinkExtended>
+          <NavbarLinkExtended to="/workouts"> My Workouts</NavbarLinkExtended>
+          <NavbarLinkExtended to="/new"> Create Workout</NavbarLinkExtended>
+        </NavbarExtendedContainer>
+      )}
+    </NavbarContainer>
   );
 }
-
-const Wrapper = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-`;
-
-const Logo = styled.h1`
-  font-family: "Permanent Marker", cursive;
-  font-size: 3rem;
-  color: deeppink;
-  margin: 0;
-  line-height: 1;
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-`;
-
-const Nav = styled.nav`
-  display: flex;
-  gap: 4px;
-  position: absolute;
-  right: 8px;
-`;
 
 export default NavBar;
