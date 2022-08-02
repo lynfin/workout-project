@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Box, ButtonFixedWidth } from "../styles";
+import { ButtonFixedWidth } from "../styles";
 import ExerciseCard from "./ExerciseCard";
 
 function RoutinesList() {
@@ -15,7 +13,6 @@ function RoutinesList() {
       .then((r) => r.json())
       .then((routine) => {
         setExercises(routine.exercises);
-        // setSelectedExercise(routine.exercises[0]);
       });
   }
 
@@ -40,9 +37,6 @@ function RoutinesList() {
       .then((routines) => {
         setRoutines(routines);
         retrieveExerciseGroup(routines[0].id);
-
-        //console.log(routines[0]);
-        //setExercises(routines[0].exercises);
       });
   }, []);
 
@@ -104,10 +98,6 @@ const ExerciseDisplayContainer = styled.div`
   flex-flow: row wrap;
   width: 75%;
   height: 100%;
-`;
-
-const Routine = styled.article`
-  margin-bottom: 24px;
 `;
 
 const RoutineBar = styled.nav`

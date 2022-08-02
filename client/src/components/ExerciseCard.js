@@ -1,8 +1,5 @@
-import { React, useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import { Link } from "react-router-dom";
+import { React } from "react";
 import styled from "styled-components";
-import { Box, ButtonFixedWidth } from "../styles";
 
 function ExerciseCard({ exercise }) {
   return (
