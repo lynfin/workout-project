@@ -4,24 +4,24 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const UserPage = ({ user }) => {
-//   const handleBrowseClick = () => {
-//     fetch("/routines")
-//       .then((res) => res.json())
-//       .then((data) => console.log(data));
-//   };
-//   const handleWorkoutClick = () => {
-//     fetch("/exercises")
-//       .then((res) => res.json())
-//       .then((data) => console.log(data));
-//   };
-//   const handleCreateClick = () => {
-//     fetch("/exercises")
-//       .then((res) => res.json())
-//       .then((data) => console.log(data));
-//   };
+  //   const handleBrowseClick = () => {
+  //     fetch("/routines")
+  //       .then((res) => res.json())
+  //       .then((data) => console.log(data));
+  //   };
+  //   const handleWorkoutClick = () => {
+  //     fetch("/exercises")
+  //       .then((res) => res.json())
+  //       .then((data) => console.log(data));
+  //   };
+  //   const handleCreateClick = () => {
+  //     fetch("/exercises")
+  //       .then((res) => res.json())
+  //       .then((data) => console.log(data));
+  //   };
   return (
     <>
-    <h2 style={{ textAlign: "center" }}> Welcome, {user.username} !</h2>
+      <h2 style={{ textAlign: "center" }}> Welcome, {user.username} !</h2>
       <img
         style={{
           height: "400px",
@@ -46,7 +46,7 @@ const UserPage = ({ user }) => {
         Bio{" "}
       </h3>
       <h4 style={{ textAlign: "center" }}>{user.bio}</h4>
-      <br></br>
+      {/* <br></br>
       <br></br>
       <Button as={Link} to="/routines">
         Browse Exercises
@@ -56,7 +56,7 @@ const UserPage = ({ user }) => {
       </Button>
       <Button as={Link} to="/new" >
         Create Workout
-      </Button>
+      </Button> */}
     </>
   );
 };
