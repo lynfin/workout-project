@@ -195,7 +195,7 @@
 
     Exercise.create(
         name:"Dumbell Shoulder Press",
-        routine_id: 4,
+        routine_id: 5,
         image_url:"https://i.pinimg.com/originals/24/9f/c2/249fc2fd2614e0a54ee0e6c8839a0a9e.gif",
         description:"Holding a dumbbell in each hand at shoulder height with your palms facing away from you. Keep your chest up and your core braced, and look straight forward throughout the move. Press the weights directly upwards until your arms are straight and the weights touch above your head",
         target_area:"Deltoids",
@@ -203,7 +203,7 @@
 
     Exercise.create(
         name:"Lateral Raises",
-        routine_id: 4,
+        routine_id: 5,
         image_url:"https://i0.wp.com/thumbs.gfycat.com/QuaintMeanBuckeyebutterfly-size_restricted.gif?w=1155&h=840",
         description:"Keep your back straight, brace your core, and then slowly lift the weights out to the side until your arms are parallel with the floor, with the elbow slightly bent. Return back to the starting point and repeat.",
         target_area:"Medial Deltoids",
@@ -211,7 +211,7 @@
 
     Exercise.create(
         name:"Rear Delt Raises",
-        routine_id: 4,
+        routine_id: 5,
         image_url:"https://thumbs.gfycat.com/ChubbyEvilJellyfish-size_restricted.gif",
         description:"Once your back is just about parallel with the floor. With a slight bend in your elbows, open your arms up towards the ceiling by squeezing your shoulder blades together.When you've reached a full range of motion, slowly lower your arms back to the starting position and breathe before starting your next rep.",
         target_area:"Posterior Deltoids",
@@ -219,7 +219,7 @@
 
     Exercise.create(
         name:"Shrugs",
-        routine_id: 4,
+        routine_id: 5,
         image_url:"https://c.tenor.com/uMNZPBaaTPYAAAAC/dumbbell-shrug.gif",
         description:" Keep your arms straight as you lift your shoulders toward your ears. Pause for a moment before lowering your shoulders back to the starting position. Repeat this movement for the desired amount of time",
         target_area:"Trapezius",
@@ -227,7 +227,7 @@
 
     Exercise.create(
         name:"Front Raises",
-        routine_id: 4,
+        routine_id: 5,
         image_url:"https://i.pinimg.com/originals/29/17/76/2917766fcf0abab7e2650dbac8b209bf.gif",
         description:"Perform front raises by standing and using an overhand grip to lift a pair of dumbbells from the front of your thighs to shoulder level in front of your body.",
         target_area:"Anterior deltoids",
@@ -235,7 +235,7 @@
 
     Exercise.create(
         name:"Arnold Press",
-        routine_id: 4,
+        routine_id: 5,
         image_url:"https://thumbs.gfycat.com/AnnualHatefulChupacabra-max-1mb.gif",
         description:"In one motion, bring elbows out wide to sides while rotating hands so palms face forward and pressing the dumbbells overhead until arms are straight and biceps are by ears.Pause, then reverse the movement to return to start. That's one rep.",
         target_area:"Deltoids",
@@ -243,7 +243,7 @@
 
     Exercise.create(
         name:"Dive Bomber Pushups",
-        routine_id: 4,
+        routine_id: 5,
         image_url:"https://wm-blog-content.s3-us-west-2.amazonaws.com/MOVEMENTS/DIVE-BOMBER-PUSHUPS.gif",
         description:"Begin with your hands and feet shoulder-width apart, and your hips raised so that your body forms an inverted V. 2) Keeping your shoulder lowered away from your ears, bring your chest forward between your hands as you bend your arms. 3) Continue to glide through as you straighten your arms and bring your chest up.",
         target_area:"Deltoids",
@@ -251,7 +251,7 @@
 
     Exercise.create(
         name:"Military Press",
-        routine_id: 4,
+        routine_id: 5,
         image_url:"https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/how-to-do-the-military-press.gif?resize=480:*",
         description:"You start with the barbell resting on your collarbone, around shoulder height. You then lift the weight up until your arms are almost fully extended straight up. Finish one rep by lowering the weight back down to your collarbone.",
         target_area:"Deltoids",
@@ -259,7 +259,7 @@
 
     Exercise.create(
         name:"Tricep Extension",
-        routine_id: 5,
+        routine_id: 6,
         image_url:"https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/workouts/2016/03/dumbbelloverheadtricepsextension-1456956005.gif",
         description:"Extend your arms straight out to the sides, keeping your elbows in a neutral position. Slowly lower your arms back to the starting position. Repeat this movement for the desired amount of time.",
         target_area:"Triceps",
@@ -267,7 +267,7 @@
 
     Exercise.create(
         name:"Tricep Kickbacks",
-        routine_id: 5,
+        routine_id: 6,
         image_url:"https://c.tenor.com/jqwaOmRs-7gAAAAC/tricep-kick-back-tricep.gif",
         description:"Place one hand on your thigh for support. On an exhale, engage your triceps as you slowly extend your arm back as far as you can, keeping your arm in tight by your side. Pause here, then inhale as your return your arm to the starting position.",
         target_area:"Triceps",
@@ -275,7 +275,7 @@
 
     Exercise.create(
         name:"Diamond Pushups",
-        routine_id: 5,
+        routine_id: 6,
         image_url:"https://i.makeagif.com/media/2-06-2016/ROHAwN.gif",
         description:"Position your index fingers and thumbs so they're touching, forming a diamond shape, and extend your arms so that your body is elevated and forms a straight line from your head to your feet. Lower your chest towards your hands, ensuring you don't flare your elbows out to the sides and keeping your back flat.",
         target_area:"Triceps",
@@ -284,7 +284,7 @@
 
     Exercise.create(
         name:"Triceps Dips",
-        routine_id: 5,
+        routine_id: 6,
         image_url:"https://thumbs.gfycat.com/CompleteZigzagFossa-max-1mb.gif",
         description:"You hold your entire body weight up with your arms extended and feet hovering over the floor, ankles crossed. Lower your body until your elbows reach a 90-degree angle before returning to your starting position",
         target_area:"Triceps",
@@ -292,7 +292,7 @@
 
     Exercise.create(
         name:"Rope Pushdowns",
-        routine_id: 5,
+        routine_id: 6,
         image_url:"https://i.makeagif.com/media/4-03-2016/9byy6n.gif",
         description:"Push the rope down by extending your triceps and hold for 2 seconds. Do not lock out your elbows. Exhale during this portion of the exercise",
         target_area:"Triceps",
@@ -300,7 +300,7 @@
 
     Exercise.create(
         name:"Skull Crushers",
-        routine_id: 5,
+        routine_id: 6,
         image_url:"https://www.verywellfit.com/thmb/zNq9ysvW_03yafn_2Sib2v1gFK4=/2667x2000/smart/filters:no_upscale()/94-3498313--Lying-triceps-extenGIF-0d0e624392d74f9897a698fbe5c4ea3b.gif",
         description:"Skull crushers are performed by lying on your back on a flat bench and lifting dumbbells from behind your head to full extension above you.",
         target_area:"Triceps",
@@ -308,7 +308,7 @@
 
     Exercise.create(
         name:"Tricep Dips (Advanced)",
-        routine_id: 5,
+        routine_id: 6,
         image_url:"https://thumbs.gfycat.com/ConstantAlertHackee-size_restricted.gif",
         description:"The exercise begins when you hold on to parallel bars with your arms straight. You then bend your elbows until your upper arms are parallel to the ground before driving up to the starting position.",
         target_area:"Triceps",
@@ -316,7 +316,7 @@
 
     Exercise.create(
         name:"Bicep Curls",
-        routine_id: 6,
+        routine_id: 7,
         image_url:"https://i.gifer.com/7hh1.gif",
         description:"Biceps curl usually starts with the arm in a fully extended position, holding a weight with a supinated (palms facing up) grip. A full repetition consists of bending or curling the elbow until it is fully flexed, then slowly lowering the weight to the starting position.",
         target_area:"Biceps",
@@ -324,7 +324,7 @@
 
     Exercise.create(
         name:"Hammer Curls",
-        routine_id: 6,
+        routine_id: 7,
         image_url:"https://www.verywellfit.com/thmb/yDUsdmxbG9ZL3BE4ySlKUpKdHRw=/2667x2000/smart/filters:no_upscale()/14-Hammer-Curls-GIF-1e195b4ea80747cb871947b90fb0808f.gif",
         description:"Hammer curls are biceps curls performed with your hands facing each other. They're beneficial to add mass to your arms and can help focus more attention on the short head of the biceps. They may be easier to tolerate than the traditional biceps curl.",
         target_area:"Biceps",
@@ -332,7 +332,7 @@
 
     Exercise.create(
         name:"Chin Ups",
-        routine_id: 6,
+        routine_id: 7,
         image_url:"https://i0.wp.com/post.healthline.com/wp-content/uploads/2021/05/400x400_Chinup.gif?h=840",
         description:"While it requires a great deal of strength, the move is rather straightforward: Grab the bar with both hands, with your palms facing you, and arms shoulder-width apart, finally pull your chin above the bar and back down.",
         target_area:"Biceps",
@@ -340,7 +340,7 @@
 
     Exercise.create(
         name:"Incline Curl",
-        routine_id: 6,
+        routine_id: 7,
         image_url:"https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2020/10/Incline-Dumbbell-Curl.gif?fit=600%2C600&ssl=1",
         description:"Perform incline dumbbell curls by sitting on an incline bench set to a 45- or 60-degree angle. Hold a pair of dumbbells at your side. Squeeze your biceps and bend your elbows to lift the dumbbells to shoulder level, then lower them again. Repeat this movement for the desired number of reps.",
         target_area:"Biceps",
@@ -348,7 +348,7 @@
 
     Exercise.create(
         name:"Concentration Curl.",
-        routine_id: 6,
+        routine_id: 7,
         image_url:"https://cdn.shopify.com/s/files/1/0250/0362/2496/files/642.gif?v=1644814383",
         description:"Perform concentration curls by sitting on a bench, resting the back of your upper arm against your inner thigh, and lifting a dumbbell.",
         target_area:"Biceps",
@@ -356,7 +356,7 @@
 
     Exercise.create(
         name:"EZ-bar Curl",
-        routine_id: 6,
+        routine_id: 7,
         image_url:"https://i.pinimg.com/originals/69/49/92/694992d664b631eb9b1295490f21536b.gif",
         description:"Ez-bar curl usually starts with the arm in a fully extended position, holding a weight with a supinated (palms facing up) grip. A full repetition consists of bending or curling the elbow until it is fully flexed, then slowly lowering the weight to the starting position.",
         target_area:"Biceps",
@@ -364,7 +364,7 @@
 
     Exercise.create(
         name:"Behind-the-Back Cable Curl",
-        routine_id: 6,
+        routine_id: 7,
         image_url:"https://post.healthline.com/wp-content/uploads/2019/11/400x400_Forearm-Exercises_to_Do_at_the_Gym_or_at_Home_Behind_the_Back_Cable_Curl.gif",
         description:"Keeping the upper part of your arm just behind your side, contract the bicep and then slowly return to the starting position and repeat making sure to do the same amount with the other arm until the set is finished.",
         target_area:"Biceps",
