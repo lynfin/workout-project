@@ -9,13 +9,15 @@ function NewWorkout({ user }) {
   const current = new Date();
   const today = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`
   const [date, setDate] = useState(today);
-  const [comments, setComments] = useState(`  ## Comments
+  const [comments, setComments] = useState(`   Comments: 
 
+  
+  
+  
+  Exercises: `);
+  
 
-
-  ## Exercises
-
-  `);
+  
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
@@ -61,7 +63,7 @@ function NewWorkout({ user }) {
 
   
   const exercisesToDisplay = exercises.filter(exercise => parseInt(exercise.routine_id) === parseInt(selectedRoutine))
-  // const [filteredExercises, setFilteredExercises] = useState("")
+  //const [filteredExercises, setFilteredExercises] = useState("")
 
   return (
     <Wrapper>
@@ -97,6 +99,7 @@ function NewWorkout({ user }) {
               value={comments}
               onChange={(e) => setComments(e.target.value)}
             />
+            
           </FormField>
           <FormField>
             <Button color="primary" type="submit">
@@ -141,3 +144,5 @@ const WrapperChild = styled.div`
 `;
 
 export default NewWorkout;
+
+

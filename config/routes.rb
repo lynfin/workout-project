@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  get '/myworkouts', to: 'workouts#index'
+  get '/workouts', to: 'workouts#index'
   post '/workouts', to: 'workouts#create'
+  delete '/workouts', to: 'workouts#destroy'
 end
