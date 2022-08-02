@@ -36,7 +36,7 @@ function App() {
             <RoutinesList />
           </Route>
           <Route exact path="/workouts">
-            <WorkoutList />
+            <WorkoutList user={user}/>
           </Route>
         </Switch>
       </main>
