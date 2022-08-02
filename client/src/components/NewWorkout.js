@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-import ReactMarkdown from "react-markdown";
 import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
 
 function NewWorkout({ user }) {
-
   const current = new Date();
-  const today = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`
+  const today = `${current.getDate()}/${
+    current.getMonth() + 1
+  }/${current.getFullYear()}`;
   const [date, setDate] = useState(today);
   const [comments, setComments] = useState(`  ## Comments
 
@@ -19,25 +19,25 @@ function NewWorkout({ user }) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
-  const [routines, setRoutines] = useState([])
-  const [selectedRoutine, setSelectedRoutine] = useState("Please Select...")
-  const [exercises, setExercises] = useState([])
-  const [checked, setChecked] = useState([])
+  const [routines, setRoutines] = useState([]);
+  const [selectedRoutine, setSelectedRoutine] = useState("Please Select...");
+  const [exercises, setExercises] = useState([]);
+  const [checked, setChecked] = useState([]);
 
   useEffect(() => {
     fetch("/routines")
-    .then(r => r.json())
-    .then(routinesArray => setRoutines(routinesArray))
-  },[])
+      .then((r) => r.json())
+      .then((routinesArray) => setRoutines(routinesArray));
+  }, []);
 
   useEffect(() => {
     fetch("/exercises")
-    .then(r => r.json())
-    .then(exerciseArray => setExercises(exerciseArray));
-  },[])
+      .then((r) => r.json())
+      .then((exerciseArray) => setExercises(exerciseArray));
+  }, []);
 
-  function handleSubmit(e) { 
-    e.preventDefault(); 
+  function handleSubmit(e) {
+    e.preventDefault();
     setIsLoading(true);
     fetch("/workouts", {
       method: "POST",
@@ -59,8 +59,9 @@ function NewWorkout({ user }) {
     });
   }
 
-  
-  const exercisesToDisplay = exercises.filter(exercise => parseInt(exercise.routine_id) === parseInt(selectedRoutine))
+  const exercisesToDisplay = exercises.filter(
+    (exercise) => parseInt(exercise.routine_id) === parseInt(selectedRoutine)
+  );
   // const [filteredExercises, setFilteredExercises] = useState("")
 
   return (
@@ -79,13 +80,12 @@ function NewWorkout({ user }) {
           </FormField>
           <FormField>
             <Label>Routine</Label>
-            <select  onChange={(e) => setSelectedRoutine(e.target.value)}>
+            <select onChange={(e) => setSelectedRoutine(e.target.value)}>
               <option>Please Select...</option>
-              {routines.map(routine => (
-                  <option 
-                  key={routine.id}
-                  value={routine.id}
-                  >{routine.name}</option>
+              {routines.map((routine) => (
+                <option key={routine.id} value={routine.id}>
+                  {routine.name}
+                </option>
               ))}
             </select>
           </FormField>
@@ -117,9 +117,15 @@ function NewWorkout({ user }) {
           <cite>By {user.username}</cite>
         </p>
         <ReactMarkdown>{comments}</ReactMarkdown> */}
-        {exercisesToDisplay.map(exercise => (
+        {exercisesToDisplay.map((exercise) => (
           <label key={exercise.id}>
-            <input type="checkbox" value={exercise.name} onChange={(e) => setComments(`${comments} -${e.target.value}    `)}></input>
+            <input
+              type="checkbox"
+              value={exercise.name}
+              onChange={(e) =>
+                setComments(`${comments} -${e.target.value}    `)
+              }
+            ></input>
             <span>{exercise.name}&nbsp;&nbsp;&nbsp;&nbsp;</span>
           </label>
         ))}
