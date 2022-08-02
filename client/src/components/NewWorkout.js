@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 
-import ReactMarkdown from "react-markdown";
-import { Box, Button, Error, FormField, Input, Label, Select, Textarea  } from "../styles";
+import { Button, Error, FormField, Input, Label, Select, Textarea } from "../styles";
 
 
 
@@ -13,12 +12,11 @@ function NewWorkout({ user }) {
     current.getMonth() + 1
   }/${current.getFullYear()}`;
   const [date, setDate] = useState(today);
-  const [comments, setComments] = useState(`   Comments: 
-
-  
-  
-  
-  ## Exercises
+  const [comments, setComments] = useState(`Comments: 
+-
+- 
+-  
+Exercises:
   `);
  
   const [errors, setErrors] = useState([]);
@@ -67,19 +65,11 @@ function NewWorkout({ user }) {
   }
 
 
-  
-  
-
-
   function handleChange(exerciseName) {
     if(comments.includes(exerciseName)) {
       setComments(comments.replace("\n   " + exerciseName, ''))
     } else
     setComments(`${comments} \n   ${exerciseName}`) 
-
-    // if(selectedExercises.includes(exerciseName)) {
-    //   setSelectedExercises(selectedExercises.replace("\n" + `${exerciseName}`, ''))
-    // } else setSelectedExercises(`${selectedExercises} \n${exerciseName}`)
   }
 
   return (
@@ -98,9 +88,7 @@ function NewWorkout({ user }) {
           </FormField>
           <FormField>
             <Label>Routine</Label>
-
             <Select onChange={(e) => setSelectedRoutine(e.target.value)}>
-
               <option>Please Select...</option>
               {routines.map((routine) => (
                 <option key={routine.id} value={routine.id}>
@@ -117,12 +105,7 @@ function NewWorkout({ user }) {
               value={comments}
               onChange={(e) => setComments(e.target.value)}
             />
-            
           </FormField>
-          {/* <FormField>
-            <Label>Selected Exercises</Label>
-            <Box>{selectedExercises}</Box>*
-          </FormField> */}
           <FormField>
             <Button color="primary" type="submit">
               {isLoading ? "Loading..." : "Submit Workout"}
