@@ -10,6 +10,15 @@ function RoutinesList() {
   const [exercises, setExercises] = useState([]);
   const [selectedExercise, setSelectedExercise] = useState({});
 
+  function retrieveExerciseGroup(id) {
+    fetch(`/routines/${id}`)
+      .then((r) => r.json())
+      .then((routine) => {
+        setExercises(routine.exercises);
+        // setSelectedExercise(routine.exercises[0]);
+      });
+  }
+
   function handleRoutineClick(e) {
     fetch(`/routines/${e.target.id}`)
       .then((r) => r.json())
@@ -17,17 +26,29 @@ function RoutinesList() {
         setExercises(routine.exercises);
       });
   }
+
   function handleExerciseClick(e) {
     const exercise = exercises.find(
       (exercise) => exercise.id === Number(e.target.id)
     );
     setSelectedExercise(exercise);
   }
+
   useEffect(() => {
     fetch("/routines")
       .then((r) => r.json())
-      .then(setRoutines);
+      .then((routines) => {
+        setRoutines(routines);
+        retrieveExerciseGroup(routines[0].id);
+
+        //console.log(routines[0]);
+        //setExercises(routines[0].exercises);
+      });
   }, []);
+
+  useEffect(() => {
+    if (exercises.length > 0) setSelectedExercise(exercises[0]);
+  }, [exercises]);
 
   return (
     <Wrapper>
