@@ -79,10 +79,10 @@ function RoutinesList() {
     </Wrapper>
   );
 }
-
+//max-width: 1200px;
 const Wrapper = styled.section`
-  max-width: 1200px;
-  margin: 40px auto;
+  background: #d3d3d3;
+  margin: 5px auto;
 `;
 
 const SplitScreen = styled.section`
@@ -92,7 +92,7 @@ const SplitScreen = styled.section`
 `;
 
 const ExerciseDisplayContainer = styled.div`
-  background: #36393e;
+  background: #d3d3d3;
   display: flex;
   justify-content: center;
   flex-flow: row wrap;
@@ -101,14 +101,17 @@ const ExerciseDisplayContainer = styled.div`
 `;
 
 const RoutineBar = styled.nav`
+  background: #d3d3d3;
   display: flex;
+  justify-content: center;
   gap: 4px;
+  padding: 8px 16px;
 `;
 
 // Exercise container layout
 // FlexBox example here: https://javascript.plainenglish.io/how-to-react-vertical-scrolling-list-grid-with-flexbox-714a61a07c9
 const ExerciseSelectionContainer = styled.div`
-  background: #36393e;
+  background: #d3d3d3;
   display: flex;
   justify-content: center;
   flex-flow: row wrap;
@@ -132,6 +135,11 @@ const ExerciseListEntry = styled.div`
   flex-flow: column;
   justify-content: center;
   align-items: center;
+
+  &:hover {
+    cursor: pointer;
+    background: hsl(235deg 85% 97%);
+  }
 `;
 
 export default RoutinesList;

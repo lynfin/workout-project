@@ -31,20 +31,18 @@ const StyledContainer = styled.div`
   width: 100%;
   margin: auto;
 `;
-
+//color: #fff;
 const Title = styled.h2`
-  color: #fff;
   font-weight: 300;
 `;
-
+//color: #ccc;
 const Detail = styled.div`
-  color: #ccc;
   font-weight: 300;
   margin: 6px 0;
 `;
 
+//color: #fff;
 const Description = styled.p`
-  color: #fff;
   font-weight: 300;
 `;
 
