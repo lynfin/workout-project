@@ -91,10 +91,13 @@ function WorkoutList({ user }) {
 const Wrapper = styled.section`
   max-width: 800px;
   margin: 40px auto;
+  
+
 `;
 
 const Workout = styled.article`
   margin-bottom: 24px;
+  background-color: white;
 `;
 
 export default WorkoutList;

@@ -147,10 +147,12 @@ const Wrapper = styled.section`
   padding: 16px;
   display: flex;
   gap: 24px;
+  background-color: white;
 `;
 
 const WrapperChild = styled.div`
   flex: 1;
+  
 `;
 
 export default NewWorkout;

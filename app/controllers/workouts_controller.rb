@@ -1,6 +1,6 @@
 class WorkoutsController < ApplicationController
   def index
-    render json: Workout.all
+    render json: Workout.order(:date)
   end
 
   def show

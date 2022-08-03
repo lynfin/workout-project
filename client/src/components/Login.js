@@ -38,9 +38,9 @@ function Login({ onLogin }) {
 }
 
 const Logo = styled.h1`
-  font-family: "Permanent Marker", cursive;
+  
   font-size: 3rem;
-  color: deeppink;
+  color: black;
   margin: 8px 0 16px;
 `;
 
@@ -48,6 +48,8 @@ const Wrapper = styled.section`
   max-width: 500px;
   margin: 40px auto;
   padding: 16px;
+  background-color: white;
+
 `;
 
 const Divider = styled.hr`
