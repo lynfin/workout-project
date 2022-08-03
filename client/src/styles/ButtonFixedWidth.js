@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const COLORS = {
   primary: {
-    "--main": "indigo",
+    "--main": "red",
     "--accent": "white",
   },
   secondary: {
@@ -11,7 +11,11 @@ const COLORS = {
   },
 };
 
-function ButtonFixedWidth({ variant = "fill", color = "primary", ...props }) {
+function ButtonFixedWidth({
+  variant = "outline",
+  color = "primary",
+  ...props
+}) {
   let Component;
   if (variant === "fill") {
     Component = FillButton;
