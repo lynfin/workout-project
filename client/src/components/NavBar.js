@@ -40,11 +40,11 @@ function NavBar({ user, setUser }) {
           </NavbarLinkContainer>
         </LeftContainer>
         <RightContainer>
-        <NavbarLinkExtended to="/">
-          <Button variant="outline" onClick={handleLogoutClick}>
-            Logout
-          </Button>
-        </NavbarLinkExtended>
+          <NavbarLinkExtended to="/">
+            <Button variant="outline" onClick={handleLogoutClick}>
+              Logout
+            </Button>
+          </NavbarLinkExtended>
         </RightContainer>
       </NavbarInnerContainer>
       {extendNavbar && (

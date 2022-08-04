@@ -1,7 +1,8 @@
 import { Label } from "../styles";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-function MiniCard({exercise, handleChange }) {
+function MiniCard({ exercise, handleChange }) {
+  const [showImage, setShowImage] = useState(false);
 
     const [showImage, setShowImage] = useState(false)
 
@@ -20,7 +21,7 @@ function MiniCard({exercise, handleChange }) {
             ></input>
             <span>{exercise.name}&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <Label onClick={() => setShowImage(!showImage)} style={{ background: '#d3d3d3', borderRadius: '6px', cursor: 'pointer', padding: '0px 10px 0px 10px', width: 'fit-content', marginLeft: '3px'}}>{showImage === false ? "Quick View" : "Hide"}</Label>
-            <img src={exercise.image_url} alt="" style={ { display: showImage === false ? 'none' : '' , width: '100px', height: '100px', margin: '10px' } }></img>
+            <img src={exercise.image_url} alt={exercise.name} style={ { display: showImage === false ? 'none' : '' , width: '100px', height: '100px', margin: '10px' } }></img>
         </Label>
     )
 }
