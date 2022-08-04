@@ -102,7 +102,7 @@ Exercises:
             <Select onChange={(e) => handleSelect(e.target.value) }>
               <option>Please Select...</option>
               {routines.map((routine) => (
-                <option key={routine.id} value={routine.id}>
+                <option key={routine.id} value={routine.id} name={routine.name}>
                   {routine.name}
                 </option>
               ))}

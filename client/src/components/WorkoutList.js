@@ -50,7 +50,7 @@ function WorkoutList({ user }) {
   }, [user.id]); //this is new
 
   return (
-    <div style={{width: '100%', background: '#d3d3d3', padding: '50px'}}>
+    <div style={{width: '100%', minHeight: '100vh', background: '#d3d3d3', padding: '50px'}}>
     <Wrapper>
       {workouts.length > 0 ? (
         workouts.map((workout) => (

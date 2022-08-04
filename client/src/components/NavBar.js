@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
 import { Button } from "../styles";
 import {
   NavbarContainer,
@@ -10,11 +8,9 @@ import {
   NavbarInnerContainer,
   NavbarLinkContainer,
   NavbarLink,
-  Logo,
   OpenLinksButton,
   NavbarLinkExtended,
 } from "../styles/NavBar.style";
-import LogoImg from "../assets/logo.png";
 
 function NavBar({ user, setUser }) {
   function handleLogoutClick() {
