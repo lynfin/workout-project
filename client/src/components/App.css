@@ -7,6 +7,10 @@ body {
   padding: 0;
 }
 
+div::-webkit-scrollbar {
+  display: none;
+}
+
 
 
 
