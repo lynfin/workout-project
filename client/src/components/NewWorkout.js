@@ -13,11 +13,15 @@ import {
   Textarea,
 } from "../styles";
 
+function pad2(number) {
+  return (number < 10 ? "0" : "") + number;
+}
+
 function NewWorkout({ user }) {
   const current = new Date();
-  const today = `${current.getDate()}/${
+  const today = `${current.getFullYear()}-${pad2(
     current.getMonth() + 1
-  }/${current.getFullYear()}`;
+  )}-${pad2(current.getDate())}`;
   const [date, setDate] = useState(today);
   const [comments, setComments] = useState(`Comments: 
 -
@@ -32,7 +36,6 @@ Exercises:
   const [routines, setRoutines] = useState([]);
   const [selectedRoutine, setSelectedRoutine] = useState("Please Select...");
   const [exercises, setExercises] = useState([]);
-  
 
   useEffect(() => {
     fetch("/routines")
@@ -46,8 +49,9 @@ Exercises:
       .then((exerciseArray) => setExercises(exerciseArray));
   }, []);
 
-  const exercisesToDisplay = exercises.filter((exercise) => exercise.routine_id === parseInt(selectedRoutine));
-
+  const exercisesToDisplay = exercises.filter(
+    (exercise) => exercise.routine_id === parseInt(selectedRoutine)
+  );
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -79,63 +83,63 @@ Exercises:
   }
 
   function handleSelect(selection) {
-    setSelectedRoutine(selection)
+    setSelectedRoutine(selection);
   }
 
   return (
-    <div style={{width: '100%', background: '#d3d3d3', padding: '50px'}}>
-    <Wrapper>
-      <WrapperChild>
-        <h2>Create Workout</h2>
-        <form onSubmit={handleSubmit}>
-          <FormField>
-            <Label htmlFor="date">Date</Label>
-            <Input
-              type="date"
-              id="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-            />
-          </FormField>
-          <FormField>
-            <Label>Routine</Label>
-            <Select onChange={(e) => handleSelect(e.target.value) }>
-              <option>Please Select...</option>
-              {routines.map((routine) => (
-                <option key={routine.id} value={routine.id}>
-                  {routine.name}
-                </option>
+    <div style={{ width: "100%", background: "#d3d3d3", padding: "50px" }}>
+      <Wrapper>
+        <WrapperChild>
+          <h2>Create Workout</h2>
+          <form onSubmit={handleSubmit}>
+            <FormField>
+              <Label htmlFor="date">Date</Label>
+              <Input
+                type="date"
+                id="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+              />
+            </FormField>
+            <FormField>
+              <Label>Routine</Label>
+              <Select onChange={(e) => handleSelect(e.target.value)}>
+                <option>Please Select...</option>
+                {routines.map((routine) => (
+                  <option key={routine.id} value={routine.id}>
+                    {routine.name}
+                  </option>
+                ))}
+              </Select>
+            </FormField>
+            <FormField>
+              <Label htmlFor="comments">Comments</Label>
+              <Textarea
+                id="comments"
+                rows="10"
+                value={comments}
+                onChange={(e) => setComments(e.target.value)}
+              />
+            </FormField>
+            <FormField>
+              <Button color="primary" type="submit">
+                {isLoading ? "Loading..." : "Submit Workout"}
+              </Button>
+            </FormField>
+            <FormField>
+              {errors.map((err) => (
+                <Error key={err}>{err}</Error>
               ))}
-            </Select>
-          </FormField>
-          <FormField>
-            <Label htmlFor="comments">Comments</Label>
-            <Textarea
-              id="comments"
-              rows="10"
-              value={comments}
-              onChange={(e) => setComments(e.target.value)}
-            />
-          </FormField>
-          <FormField>
-            <Button color="primary" type="submit">
-              {isLoading ? "Loading..." : "Submit Workout"}
-            </Button>
-          </FormField>
-          <FormField>
-            {errors.map((err) => (
-              <Error key={err}>{err}</Error>
-            ))}
-          </FormField>
-        </form>
-      </WrapperChild>
+            </FormField>
+          </form>
+        </WrapperChild>
 
-      <WrapperChild style={{ margin: "70px" }}>
-        {exercisesToDisplay.map((exercise) => (
-          <MiniCard  exercise={exercise} handleChange={handleChange} />
-        ))}
-      </WrapperChild>
-    </Wrapper>
+        <WrapperChild style={{ margin: "70px" }}>
+          {exercisesToDisplay.map((exercise) => (
+            <MiniCard exercise={exercise} handleChange={handleChange} />
+          ))}
+        </WrapperChild>
+      </Wrapper>
     </div>
   );
 }
@@ -153,7 +157,6 @@ const Wrapper = styled.section`
 
 const WrapperChild = styled.div`
   flex: 1;
-  
 `;
 
 export default NewWorkout;

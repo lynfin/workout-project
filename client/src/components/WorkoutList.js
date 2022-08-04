@@ -50,42 +50,42 @@ function WorkoutList({ user }) {
   }, [user.id]); //this is new
 
   return (
-    <div style={{width: '100%', background: '#d3d3d3', padding: '50px'}}>
-    <Wrapper>
-      {workouts.length > 0 ? (
-        workouts.map((workout) => (
-          <Workout key={workout.id}>
-            <Box>
-              <h3>{workout.date}</h3>
-              <cite>By {workout.user.username}</cite>
-              <p>
-                <em style={{ textDecoration: "underline" }}>
-                  How Was The Workout? <br />
-                  <form onSubmit={() => updateWorkout(workout.id)}>
-                    <Textarea
-                      defaultValue={workout.comments}
-                      onChange={(e) => setNewComments(e.target.value)}
-                      style={{ height: "200px" }}
-                    />
-                    <Button>Update </Button>
-                    <Button onClick={() => deleteWorkout(workout.id)}>
-                      🗑️ Delete
-                    </Button>
-                  </form>
-                </em>
-              </p>
-            </Box>
-          </Workout>
-        ))
-      ) : (
-        <>
-          <h2>No Workouts Found</h2>
-          <Button as={Link} to="/new">
-            Make a New Workout
-          </Button>
-        </>
-      )}
-    </Wrapper>
+    <div style={{ width: "100%", background: "#d3d3d3", padding: "50px" }}>
+      <Wrapper>
+        {workouts.length > 0 ? (
+          workouts.map((workout) => (
+            <Workout key={workout.id}>
+              <Box>
+                <h3>{workout.date}</h3>
+                <cite>By {workout.user.username}</cite>
+                <p>
+                  <em style={{ textDecoration: "underline" }}>
+                    How Was The Workout? <br />
+                  </em>
+                </p>
+                <form onSubmit={() => updateWorkout(workout.id)}>
+                  <Textarea
+                    defaultValue={workout.comments}
+                    onChange={(e) => setNewComments(e.target.value)}
+                    style={{ height: "200px" }}
+                  />
+                  <Button>Update </Button>
+                  <Button onClick={() => deleteWorkout(workout.id)}>
+                    🗑️ Delete
+                  </Button>
+                </form>
+              </Box>
+            </Workout>
+          ))
+        ) : (
+          <>
+            <h2>No Workouts Found</h2>
+            <Button as={Link} to="/new">
+              Make a New Workout
+            </Button>
+          </>
+        )}
+      </Wrapper>
     </div>
   );
 }
