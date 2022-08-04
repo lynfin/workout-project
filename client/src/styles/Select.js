@@ -10,6 +10,7 @@ const Select = styled.select`
   font-size: 1rem;
   line-height: 1.5;
   padding: 4px;
+
 `;
 
 export default Select;
