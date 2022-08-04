@@ -87,48 +87,29 @@ Exercises:
   }
 
   return (
-    <div style={{ width: "100%", background: "#d3d3d3", padding: "50px" }}>
-      <Wrapper>
-        <WrapperChild>
-          <h2>Create Workout</h2>
-          <form onSubmit={handleSubmit}>
-            <FormField>
-              <Label htmlFor="date">Date</Label>
-              <Input
-                type="date"
-                id="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-              />
-            </FormField>
-            <FormField>
-              <Label>Routine</Label>
-              <Select onChange={(e) => handleSelect(e.target.value)}>
-                <option>Please Select...</option>
-                {routines.map((routine) => (
-                  <option key={routine.id} value={routine.id}>
-                    {routine.name}
-                  </option>
-                ))}
-              </Select>
-            </FormField>
-            <FormField>
-              <Label htmlFor="comments">Comments</Label>
-              <Textarea
-                id="comments"
-                rows="10"
-                value={comments}
-                onChange={(e) => setComments(e.target.value)}
-              />
-            </FormField>
-            <FormField>
-              <Button color="primary" type="submit">
-                {isLoading ? "Loading..." : "Submit Workout"}
-              </Button>
-            </FormField>
-            <FormField>
-              {errors.map((err) => (
-                <Error key={err}>{err}</Error>
+
+    <div style={{width: '100%', background: '#d3d3d3', padding: '50px'}}>
+    <Wrapper>
+      <WrapperChild>
+        <h2>Create Workout</h2>
+        <form onSubmit={handleSubmit}>
+          <FormField>
+            <Label htmlFor="date">Date</Label>
+            <Input
+              type="date"
+              id="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+          </FormField>
+          <FormField>
+            <Label>Routine</Label>
+            <Select onChange={(e) => handleSelect(e.target.value) }>
+              <option>Please Select...</option>
+              {routines.map((routine) => (
+                <option key={routine.id} value={routine.id} name={routine.name}>
+                  {routine.name}
+                </option>
               ))}
             </FormField>
           </form>

@@ -19,18 +19,20 @@ const UserPage = ({ user }) => {
           padding: "10px",
           overflowY: "scroll",
         }}
-      >
-        <h2 style={{ textAlign: "center" }}>{user.username}</h2>
-        <img style={{ width: "100%" }} src={user.image_url} alt="img"></img>
-        <h3 style={{ fontSize: "18px" }}>{user.bio}</h3>
-      </div>
-      <div>
-        <img
-          style={{ height: "100vh" }}
-          alt="gym scene"
-          src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Z3ltfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
-        ></img>
-      </div>
+
+        >
+          <h2 style={{ textAlign: "center" }}>{user.username}</h2>
+          <img
+            style={{ width: '100%'}}
+            src={user.image_url}
+            alt="img"
+          ></img>
+          <h3 style={{ fontSize: '18px' }}>{user.bio}</h3>
+        </div>
+        <div >
+          <img style={{height: '100vh'}} alt="gym scene" src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Z3ltfGVufDB8fDB8fA%3D%3D&w=1000&q=80"></img>
+        </div>
+
     </div>
   );
 };
