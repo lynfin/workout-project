@@ -50,6 +50,7 @@ function WorkoutList({ user }) {
   }, [user.id]); //this is new
 
   return (
+    <div style={{width: '100%', background: '#d3d3d3', padding: '50px'}}>
     <Wrapper>
       {workouts.length > 0 ? (
         workouts.map((workout) => (
@@ -85,19 +86,19 @@ function WorkoutList({ user }) {
         </>
       )}
     </Wrapper>
+    </div>
   );
 }
 
 const Wrapper = styled.section`
   max-width: 800px;
   margin: 40px auto;
-  
-
 `;
 
 const Workout = styled.article`
   margin-bottom: 24px;
-  background-color: white;
+  background: white;
+  border-radius: 6px;
 `;
 
 export default WorkoutList;

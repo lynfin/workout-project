@@ -49,7 +49,7 @@ const Wrapper = styled.section`
   margin: 40px auto;
   padding: 16px;
   background-color: white;
-
+  border-radius: 6px
 `;
 
 const Divider = styled.hr`

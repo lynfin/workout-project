@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
+import MiniCard from "./Minicard";
 
 import {
   Button,
@@ -28,14 +29,10 @@ Exercises:
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
-
   const [routines, setRoutines] = useState([]);
   const [selectedRoutine, setSelectedRoutine] = useState("Please Select...");
   const [exercises, setExercises] = useState([]);
-  const [selectedExercises, setSelectedExercises] = useState("");
-  const exercisesToDisplay = exercises.filter(
-    (exercise) => parseInt(exercise.routine_id) === parseInt(selectedRoutine)
-  );
+  
 
   useEffect(() => {
     fetch("/routines")
@@ -48,6 +45,9 @@ Exercises:
       .then((r) => r.json())
       .then((exerciseArray) => setExercises(exerciseArray));
   }, []);
+
+  const exercisesToDisplay = exercises.filter((exercise) => exercise.routine_id === parseInt(selectedRoutine));
+
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -78,7 +78,12 @@ Exercises:
     } else setComments(`${comments} \n   ${exerciseName}`);
   }
 
+  function handleSelect(selection) {
+    setSelectedRoutine(selection)
+  }
+
   return (
+    <div style={{width: '100%', background: '#d3d3d3', padding: '50px'}}>
     <Wrapper>
       <WrapperChild>
         <h2>Create Workout</h2>
@@ -94,7 +99,7 @@ Exercises:
           </FormField>
           <FormField>
             <Label>Routine</Label>
-            <Select onChange={(e) => setSelectedRoutine(e.target.value)}>
+            <Select onChange={(e) => handleSelect(e.target.value) }>
               <option>Please Select...</option>
               {routines.map((routine) => (
                 <option key={routine.id} value={routine.id}>
@@ -127,27 +132,23 @@ Exercises:
 
       <WrapperChild style={{ margin: "70px" }}>
         {exercisesToDisplay.map((exercise) => (
-          <Label key={exercise.id} style={{ marginTop: "30px" }}>
-            <input
-              type="checkbox"
-              value={exercise.name}
-              onChange={(e) => handleChange(e.target.value)}
-            ></input>
-            <span>{exercise.name}&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          </Label>
+          <MiniCard  exercise={exercise} handleChange={handleChange} />
         ))}
       </WrapperChild>
     </Wrapper>
+    </div>
   );
 }
 
 const Wrapper = styled.section`
   max-width: 1000px;
+  min-width: fit-content;
   margin: 40px auto;
   padding: 16px;
   display: flex;
   gap: 24px;
-  background-color: white;
+  background: white;
+  border-radius: 6px;
 `;
 
 const WrapperChild = styled.div`
