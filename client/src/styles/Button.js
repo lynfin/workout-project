@@ -47,7 +47,9 @@ const OutlineButton = styled(ButtonBase)`
   border: 2px solid var(--main);
 
   &:hover {
-    background: hsl(235deg 85% 97%);
+    background: var(--main);
+    color: var(--accent);
+    border: 2px solid var(--accent);
   }
 `;
 
