@@ -29,6 +29,7 @@ function RoutinesList() {
       (exercise) => exercise.id === Number(e.target.id)
     );
     setSelectedExercise(exercise);
+    
   }
 
   useEffect(() => {
@@ -65,6 +66,8 @@ function RoutinesList() {
                 id={exercise.id}
                 index={index}
                 key={exercise.id}
+                exercise={exercise}
+                selectedExercise={selectedExercise}
                 onClick={handleExerciseClick}
               >
                 {exercise.name}
@@ -126,7 +129,8 @@ const ExerciseList = styled.div`
 
 const ExerciseListEntry = styled.div`
   margin: 20px;
-  background: #fff;
+  background: ${props => props.exercise === props.selectedExercise ? 'red' : '#fff'};
+  color: ${props => props.exercise === props.selectedExercise ? '#fff' : 'black'};
   height: 50px;
   width: 250px;
   border-radius: 20px;
@@ -138,7 +142,8 @@ const ExerciseListEntry = styled.div`
 
   &:hover {
     cursor: pointer;
-    background: hsl(235deg 85% 97%);
+    background: red;
+    color: #fff
   }
 `;
 
